@@ -1,11 +1,13 @@
 #include "sort.h"
 void swap_int(int *a, int *b);
+
 /**
  * selection_sort - a function that sorts an array of integers in scending
  * order using the selection sort algorithm
  * @array: array of integers
  * @size: size of the array
  **/
+
 void selection_sort(int *array, size_t size)
 {
 	size_t j, i;
