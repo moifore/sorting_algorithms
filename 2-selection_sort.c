@@ -1,50 +1,35 @@
 #include "sort.h"
-void swap_int(int *a, int *b);
 
 /**
- * selection_sort - a function that sorts an array of integers in scending
- * order using the selection sort algorithm
- * @array: array of integers
- * @size: size of the array
- **/
-
+ * selection_sort - Sorts an array of integers in ascending order
+ * @array: Array of integers
+ * @size: Size of the given array
+ */
 void selection_sort(int *array, size_t size)
 {
-	size_t j, i;
-	int *temp;
+	size_t current_idx = 0, unsorted_min_idx, sorted_max_idx = 0;
+	int temp = 0;
 
-	temp = NULL;
-	for (j = 0; array && j < size - 1; j++)
+	if (size < 2 || !array)
+		return;
+
+	while (sorted_max_idx < size - 1)
 	{
-		temp = NULL;
-
-		for (i = j + 1; i < size; i++)
+		unsorted_min_idx = sorted_max_idx + 1;
+		current_idx = unsorted_min_idx;
+		while (current_idx < size)
 		{
-			if (array[i] < array[j])
-			{
-				if (temp && array[i] < *temp)
-					temp = &array[i];
-				if (!temp)
-					temp = &array[i];
-			}
+			if (array[current_idx] < array[unsorted_min_idx])
+				unsorted_min_idx = current_idx;
+			current_idx++;
 		}
-		if (temp)
+		if (array[unsorted_min_idx] < array[sorted_max_idx])
 		{
-			swap_int(temp, &array[j];
+			temp = array[unsorted_min_idx];
+			array[unsorted_min_idx] = array[sorted_max_idx];
+			array[sorted_max_idx] = temp;
 			print_array(array, size);
 		}
+		sorted_max_idx++;
 	}
-}
-/**
- * swap_int - swaps the values of two integers
- * @a: takes an int
- * @b: takes an int
- **/
-void swap_int(int *a, int *b)
-{
-	int temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
 }
